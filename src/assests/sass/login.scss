@@ -1,0 +1,220 @@
+.container-login {
+    display: flex;
+
+    .left-container {
+        flex: 0 1 50%;
+        min-height: 100%;
+        max-width: 50%;
+        text-align: center;
+        margin: 20% auto 0;
+
+        img {
+            width: 324px;
+            height: auto;
+        }
+    }
+    
+    .right-container {
+        flex: 0 1 50%;
+        display: flex;
+        height: 100%;
+        max-width: 50%;
+        flex-wrap: wrap;
+        align-items: center;
+        flex-direction: column;
+        margin: 11% 0 0 0;
+        font-size: 18px;
+        line-height: 27px;
+        align-content: flex-start;
+
+        input {
+            width: 440px;
+            padding: 11px 24px;
+            border-radius: 5px;
+            color: $color-primary-gray;
+            border: 1px solid $color-primary-gray;
+        }
+
+        .submit {
+            display: flex;
+            justify-content: center;
+
+            button {
+                padding: 11px 82px;
+                color: $color-white;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .user-check {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        color: $color-primary-gray;
+        font-size: 16px;
+        line-height: 24px;
+
+        p {
+            margin: 20px 0 10px 0;
+        }
+
+        button:first-child {
+            padding: 11px 37px;
+            border-radius: 5px;
+            border: 1px solid $color-primary-gray;
+        }
+
+        span {
+            color: $color-primary-gray;
+        }
+    }
+    
+    .name-box, .email-box, .password-box, .mobile-box {
+        display: flex;
+        flex-direction: column;
+
+        i {
+            color: $color-red;
+            font-size: 13px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+    }
+
+    @include media(tablet, phone) {
+        flex-direction: column;
+
+        .left-container {
+            max-width: 100%;
+            margin-top: 18%;
+
+            img {
+                width: 50%;
+            }
+        }
+
+        .right-container {
+            max-width: 100%;
+            margin: 70px 0 0 0;
+        }
+    }
+}
+
+.social-icons img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.social-login {
+    width: 54%;
+    color: $color-neutral-gray;
+    padding: 20px 0;
+    text-align: center;
+
+    p {
+        border-bottom: 1px solid $color-gray;
+        line-height: 0; 
+        margin: 20px 0 30px 0;
+    }
+    
+    span {
+        background-color: $color-white;
+        padding: 0 10px;
+        color: $color-primary-gray;
+    }
+
+    img {
+        background-color: $color-white;
+        padding: 3px;
+        border-radius: 50px;
+    }
+}
+
+.user-type select {
+    background-color: transparent;
+    border: 1px solid $color-gray;
+    padding: 8px 6px 8px 10px;
+    margin-bottom: 20px;
+    font-family: $font-family-josefin;
+    border-radius: 5px;
+    color: $color-gray;
+    width: 100%;
+    font-size: 13px;
+    line-height: 24px;
+}
+
+.signup .right-container {
+    margin: 9% 0 30px 0;
+}
+
+// Change Password CSS
+.change-password__box {
+    color: $color-primary-gray;
+
+    .change-password__fields {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        
+        .change-password__text {
+            margin-bottom: 16px;
+            font-weight: bold;
+            font-size: 24px;
+            color: $color-primary-gray;
+            font-family: $font-family-poppins-semibold;
+        }
+        
+        input {
+            margin-bottom: 12px;
+            padding: 11px;
+            width: 45%;
+            border: 1px solid $color-primary-gray;
+            border-radius: 4px;
+        }
+    }
+
+    .change-password__button {
+        margin: 15px 0;
+        text-align: left;
+
+        button {
+            border-radius: 0;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+    }
+
+    @include breakpoint-tablet {
+        .change-password__fields {
+            .change-password__text {
+                font-size: 20px;
+            }
+        }
+    }
+
+    @include breakpoint-phone {
+        .change-password__fields {
+            .change-password__text {
+                font-size: 18px;
+            }
+
+            input {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+        }
+
+        .change-password__button {
+            margin: 8px 0;
+
+            button {
+                padding: 8px 22px;
+                font-size: 14px;           
+            }
+        }
+    }
+}

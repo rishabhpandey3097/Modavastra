@@ -1,0 +1,15 @@
+.not-found {
+    display: table;
+    padding-top: 13%;
+    margin: auto;
+
+    .not-found__content {
+        text-align: center;
+        .not-found__message {
+            font-family: $font-family-lato-normal;
+            color: $color-neutral-gray;
+            padding-top: 20px;
+            font-size: 30px;
+        }
+    }
+}

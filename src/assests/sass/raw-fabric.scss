@@ -1,0 +1,298 @@
+.container--raw-fabric {
+    padding: 16px 36px 80px 100px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    .raw-fabric {
+        margin: 56px 53px 0 0;
+        text-align: center;
+
+        p {
+            font-family: $font-family-lato-light;
+            font-size: 18px;
+            line-height: 24px;
+            color: $color-neutral-gray;
+        }
+
+        .raw-fabric__description {
+            display: flex;
+            justify-content: space-between;
+
+            .raw-fabric__status {
+                text-align: right;
+            }
+
+            .raw-fabric__out-of-stock {
+                color: $color-red;
+            }
+        }
+
+        .raw-fabric__title {
+            padding-bottom: 8px;
+        }
+    }
+
+    .raw-fabric__image {
+        width: 550px;
+        padding-bottom: 8px;
+    }
+}
+
+.container--raw-fabric-items {
+    padding: 80px 100px;
+    font-family: $font-family-lato-light;
+    font-size: 20px;
+    line-height: 29px;
+    color: $color-neutral-gray;
+
+    .raw-fabric-items__content {
+        display: flex;
+        text-align: center;
+        margin-bottom: 80px;
+
+        .raw-fabric-items__action-items {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .awssld__next, .awssld__prev {
+                padding: 20px;
+            }
+            .awssld.awssld--organic-arrows {
+                width: 562px;
+                height: 688px;
+                z-index: 0;
+        
+                img {
+                object-fit: contain;
+                }
+            }
+            .raw-fabric-items__image {
+                margin-bottom: 23px;
+                width: 550px;
+            }
+
+            
+
+            .raw-fabric-items__minus,
+            .raw-fabric-items__plus,
+            .raw-fabric-items__add-bag
+             {
+                font-size: 24px;
+                border-radius: 0;
+                font-family: $font-family-lato-light;
+                width: fit-content;
+            }
+
+            .raw-fabric-items__length-grp {
+                display: flex;
+                margin-bottom: 8px;
+                margin-top: 50px;
+
+                button {
+                    padding: 14px 20px;
+                    font-weight: bold;
+                    font-size: 30px;
+                }
+
+                p {
+                    border-top: 1px solid #8D8D8D;
+                    border-bottom: 1px solid #8D8D8D;
+                    padding: 8px 180px 0;
+                    font-size: 26px;
+                }
+            }
+            .raw-fabric-items__add-bag {
+                margin-bottom: 8px;
+                padding: 14px 224px;
+            }
+        }
+
+        .raw-fabric-items__description {
+            width: 50%;
+
+            .raw-fabric-items__title {
+                font-size: 48px;
+                line-height: 40px;
+                padding-bottom: 14px;
+                font-family: $font-family-didot;
+                color: $color-white;
+            }
+
+            .raw-fabric-items__price {
+                font-size: 30px;
+                line-height: 36px;
+                color: $color-neutral-orange;
+                margin-bottom: 20px;
+
+                span {
+                    font-size: 18px;
+                }
+            }
+
+            .raw-fabric-items__specifications, .raw-fabric-items__sub-desc {
+                margin-bottom: 30px;
+
+                .raw-fabric-items__specs-title, .raw-fabric-items__sub-desc-title {
+                    font-size: 32px;
+                    line-height: 32px;
+                    padding-bottom: 8px;
+                    font-weight: normal;
+                    color: $color-white;
+                }
+
+                .raw-fabric-items__specs-desc, .raw-fabric-items__sub-desc-desc {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+            }
+
+            .raw-fabric-items__sub-desc {
+                .raw-fabric-items__sub-desc-desc {
+                    padding: 0 80px;
+                }
+            }
+
+            .raw-fabric-items__pincode {    
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+
+                .raw-fabric-items__pincode-input {
+                    border: none;
+                    outline: none;
+                    border-radius: 0;
+                    border-bottom: 1px solid $color-gray;
+                    width: 210px;
+                    font-size: inherit;
+                    margin-bottom: 8px;
+                    text-align: center;
+                    font-family: $font-family-lato-light;
+                }
+
+                .raw-fabric-items__pincode-check {
+                    padding: 10px 58px;
+                    border-radius: 0;
+                    font-family: $font-family-lato-light;
+                }
+            }
+        }
+    }
+
+    .raw-fabric-items__rating {
+        background: $color-container-box;
+        padding: 20px 12px;
+        margin-bottom: 40px;
+
+        .raw-fabric-items__heading {
+            display: flex;
+            font-size: inherit;
+            margin-bottom: 25px;
+
+            h5 {
+                font-family: $font-family-lato-light;
+                font-weight: normal;
+                font-size: 30px;
+                line-height: 39px;
+                color: $color-white;
+            }
+
+            .raw-fabric-items__rating-data {
+                display: flex;
+                margin-left: 32px;
+                padding: 6px 8px;
+                background: $color-neutral-dark-gray;
+                border-radius: 5px;
+
+                .raw-fabric-items__rating-icon {
+                    width: 22px;
+                    padding-right: 10px;
+                }
+            }
+        }
+
+        .raw-fabric-items__individual-rating {
+            margin-bottom: 24px;
+
+            .raw-fabric-items__individual-rating-count {
+                margin-bottom: 10px;
+                img {
+                    width: 30px;
+                    padding-right: 10px;
+                }
+            }   
+
+            .raw-fabric-items__rating-title {
+                padding-bottom: 8px;
+                color: $color-white;
+            }
+
+            .raw-fabric-items__rating-desc {
+                padding-bottom: 8px;
+            }
+
+            .raw-fabric-items__rating-author {
+                color: $color-neutral-medium-gray;
+                padding-bottom: 8px;
+                border-bottom: 3px solid $color-neutral-dark-gray;
+                width: fit-content;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .raw-fabric-items__rating-show-button {
+            text-align: center;
+
+            .raw-fabric-items__rating-show-more {
+                font-family: $font-family-lato-normal;
+                padding: 6px 26px;
+                border-radius: 0;
+            }
+        }
+    }
+
+    .raw-fabric-items__suggestions {
+        .raw-fabric-items__suggestions-title {
+            font-size: 25px;
+            line-height: 30px;
+            font-weight: normal;
+            font-family: $font-family-lato-light;
+            margin-bottom: 20px;
+            color: $color-white;
+        }
+
+        .raw-fabric-items__all-suggested-items {
+            display: flex;
+            flex-flow: wrap;
+        }
+
+        .raw-fabric-items__suggested-items {
+            .raw-fabric-items__items-details {
+                font-size: 18px;
+                line-height: 22px;
+                text-align: center;
+
+                .raw-fabric-items__items-image {
+                    width: 210px;
+                }
+            }
+        }
+
+        .raw-fabric-items__suggested-items:not(:last-child) {
+            padding-right: 24px;
+        }
+
+    }
+}

@@ -1,0 +1,300 @@
+header {
+  padding: 20px 50px 20px 70px;
+  background-color: $color-white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 85px;
+  width: -webkit-fill-available;
+  z-index: 2;
+  box-shadow: 0px 0px 7px $color-shadow;
+
+  nav {
+    display: flex;
+    align-items: center;
+
+    .nav-items-left {
+      display: flex;
+      align-items: center;
+
+      .nav-items__hamburger {
+        display: none;
+
+        .hamburger-menu {
+          color: $color-white;
+        
+          :hover {
+            cursor: pointer;
+          }
+        }
+
+        img {
+          width: 30px;
+          height: auto;
+        }
+      }
+
+      .nav-items__moda-logo {
+        margin-right: 40px;
+
+        .moda-logo {
+          width: 110px;
+          height: auto;
+        }
+      }
+
+      .nav-items__links {
+        a {
+          color: $color-primary-gray;
+          text-transform: uppercase;
+          text-shadow: 0px 1px 1px $color-shadow;
+          font-size: 18px;
+          line-height: 27px;
+          font-family: $font-family-poppins-normal;
+          margin-right: 24px;
+        }
+      }
+    }
+
+    .nav-items-right {
+      right: 30px;
+      position: absolute;
+      display: flex;
+      align-items: center;
+
+      .nav-items {
+        margin-right: 24px;
+
+        img {
+          width: 24px;
+          height: auto;
+        }
+      }
+
+      .search-desktop {
+        img {
+          cursor: pointer;
+          position: absolute;
+          margin: 7px 0 0 10px;
+        }
+
+        input {
+          background: $color-neutral-gray;
+          font-size: 14px;
+          line-height: 22px;
+              padding: 8px 12px 8px 40px;
+          width: 300px;
+          outline: none;
+          color: $color-black;
+        }
+
+        input:focus {
+          background: $color-white;
+          border: 1px solid $color-neutral-gray;
+          color: $color-gray;
+        }
+      }
+
+      .nav-items__login {
+        img {
+          width: 30px;
+        }
+      }
+
+      .search-tablet__icon {
+        display: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  @include media(tablet, phone) {
+    padding: 20px;
+
+    nav {
+      .nav-items-left {
+        .nav-items__links {
+          display: none;
+        }
+
+        .nav-items__hamburger {
+          display: block;
+        }
+
+        .moda-logo {
+          margin: 0 !important;
+          width: 100px;
+        }
+
+        .nav-items {
+          margin-right: 20px;
+        }
+      }
+
+      .nav-items-right {
+        right: 0;
+
+        .nav-items {
+          margin-right: 20px;
+        }
+
+        .search-desktop {
+          display: none;
+        }
+
+        .search-tablet__icon {
+          display: block;
+        }
+      }
+    }
+  }
+
+  @include breakpoint-phone {
+    padding: 20px 15px !important;
+
+    nav {
+      .nav-items {
+        margin-right: 16px;
+
+        .icons {
+          width: 22px;
+        }
+      }
+
+      .nav-items-right {
+        .nav-items {
+          margin-right: 16px;
+        }
+      }
+
+      .moda-logo {
+        margin-left: 4px;
+      }
+    }
+  }
+}
+
+.search-tablet__wrapper {
+  .search-tablet {
+    display: none;
+  }
+
+  @include media(tablet, phone) {
+    .search-tablet {
+      display: none;
+      position: fixed;
+      top: 0;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      z-index: 2;
+      background: $color-white;
+      height: 85px;
+    }
+
+    img {
+      width: 24px;
+      cursor: pointer;
+    }
+
+    .search-tablet__close {
+      img {
+        width: 12px;
+      }
+    }
+  
+    .search-tablet__input {
+      width: 100%;
+      padding: 0 20px;
+
+      input {
+        font-size: 14px;
+        line-height: 22px;
+        padding: 8px;
+        width: 300px;
+        outline: none;
+        color: $color-black;
+        border: none;
+      }
+    }
+  }
+}
+
+// Sidebar menu CSS
+.sidebar-menu {
+  display: none;
+
+  .sidebar-menu__navigation {
+    position: absolute;
+    left: 0;
+    top: 85px;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+
+    .sidebar-menu__navigation-group {
+      list-style: none;
+      padding: 20px 0 60px;
+      background: $color-white;
+      z-index: 3;
+
+      .sidebar-menu__navigation-item {
+        padding-bottom: 12px;
+        font-size: 18px;
+        line-height: 27px;
+
+        a {
+          color: $color-black;
+          text-transform: uppercase;
+          font-family: $font-family-poppins-semibold;
+        }
+      }
+
+      .sidebar-menu__navigation-item.active {
+        a {
+          color: $color-red;
+        }
+      }
+    }
+  }
+}
+
+.ant-input-affix-wrapper {
+  opacity: 0.9;
+  border-radius: 20px;
+  font-size: 1rem;
+  width: 12rem;
+}
+
+.carousel {
+  width: 94%;
+}
+
+// Overlay CSS
+.overlay {
+  background-color: $color-black;
+  opacity: 0.5;
+  cursor: none;
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+
+  &.overlay--wholepage {
+    top: 0;
+    z-index: 2;
+  }
+
+  &.overlay--mobile {
+    z-index: 2;
+  }
+
+  &.overlay--except-header {
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.hidden {
+  overflow: hidden;
+}

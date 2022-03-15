@@ -1,0 +1,139 @@
+.product-filter {
+  box-shadow: 1px 0px 4px $color-shadow;
+  padding: 12px;
+  font-size: 18px;
+  line-height: 27px;
+  color: $color-primary-gray;
+  width: 22%;
+  position: fixed;
+  top: 120px;
+  overflow: auto;
+  max-height: calc(100vh - 120px);
+  z-index: 1000;
+
+  @include custom-scrollbar;
+
+  .product-filter__filter-title {
+    font-family: $font-family-poppins-semibold;
+    margin-bottom: 12px;
+  }
+
+  .product-filter__rent {
+    display: flex;
+    font-weight: 600;
+    justify-content: space-between;
+    align-items: center;
+
+    .product-filter__rent-toggle {
+      position: relative;
+      display: inline-block;
+      width: 36px;
+      height: 15px;
+
+      input[type="checkbox"] {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .product-filter__rent-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $color-neutral-medium-gray;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 34px;
+      }
+
+      .product-filter__rent-slider::before {
+        position: absolute;
+        content: "";
+        height: 21px;
+        width: 21px;
+        left: -3px;
+        bottom: -3px;
+        background-color: $color-neutral-gray;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+
+      input[type="checkbox"]:checked + .product-filter__rent-slider {
+        background: $color-neutral-purple;
+      }
+
+      input[type="checkbox"]:checked + .product-filter__rent-slider::before {
+        -webkit-transform: translateX(22px);
+        -ms-transform: translateX(22px);
+        transform: translateX(22px);
+        background: $color-purple;
+      }
+    }
+  }
+
+  .product-filter__line {
+    border: 1px solid $color-primary-gray;
+    width: 40%;
+    margin: 12px 0;
+  }
+
+  .product-filter__wrapper {
+    .product-filter__title {
+      font-weight: 600;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .product-filter__option {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      input {
+        margin-right: 12px;
+      }
+    }
+  }
+}
+
+.product-filter--dyoo {
+  .product-filter__designers {
+    display: none;
+  }
+}
+
+.product-filter--jewellery {
+  .product-filter__size,
+  .product-filter__designers {
+    display: none;
+  }
+}
+
+.filter-btn {
+  padding: 5px 10px;
+}
+
+@include media(tablet, phone) {
+  .product-filter {
+    box-shadow: 1px 0px 4px $color-shadow;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 27px;
+    color: $color-primary-gray;
+    width: 80% !important;
+    display: block;
+    background-color: whitesmoke;
+
+    top: 120px;
+
+    max-height: calc(100vh - 120px);
+  }
+}

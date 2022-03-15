@@ -1,0 +1,77 @@
+footer {
+  background: $color-primary-gray;
+  padding: 33px 140px 60px;
+  display: flex;
+
+  ul {
+    flex: 1;
+    list-style: none;
+    color: $color-white;
+    padding-left: 0;
+
+    li {
+      font-size: 14px;
+      line-height: 16px;
+      margin-bottom: 6px;
+
+      a {
+        color: $color-white;
+      }
+    }
+
+    .footer-column-header {
+      font-family: $font-family-poppins-semibold;
+      margin-bottom: 12px;
+    }
+
+    .footer-empty-space {
+      padding: 12px 0;
+    }
+  }
+
+  .footer-moda-details {
+    img {
+      max-width: 142px;
+      height: auto;
+      margin-bottom: 24px;
+    }
+  }
+
+  .footer-follow-us {
+    .footer-social-links {
+      display: flex;
+    }
+
+    img {
+      width: 30px;
+    }
+
+    .footer-social-links a:not(:last-child) {
+      margin-right: 12px;
+    }
+  }
+
+  @include media(tablet, phone) {
+    padding: 24px 60px 40px;
+    flex-direction: column;
+    text-align: center;
+
+    ul {
+      .footer-empty-space {
+        padding: 8px;
+      }
+    }
+
+    .footer-collaborations,
+    .footer-shop-now,
+    .footer-about-us {
+      display: none;
+    }
+
+    .footer-follow-us {
+      .footer-social-links {
+        display: block;
+      }
+    }
+  }
+}

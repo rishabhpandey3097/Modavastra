@@ -1,0 +1,316 @@
+
+
+.container--rental-items {
+    padding: 16px 36px 80px 100px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+
+    .rental-items {
+        margin: 56px 53px 0 0;
+        text-align: center;
+
+        p {
+            font-family: $font-family-lato-light;
+            font-size: 18px;
+            line-height: 24px;
+            color: $color-neutral-gray;
+        }
+
+        .rental-items__title {
+            padding-bottom: 8px;
+        }
+    }
+
+    .rental-items__image {
+        width: 250px;
+        padding-bottom: 16px;
+    }
+}
+
+.container--particular-rental-items {
+    padding: 80px 100px;
+    font-family: $font-family-lato-light;
+    font-size: 20px;
+    line-height: 29px;
+    color: $color-neutral-gray;
+
+    .particular-rental-items__content {
+        display: flex;
+        text-align: center;
+        margin-bottom: 80px;
+
+        .particular-rental-items__action-items {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 50%;
+
+            .awssld__next, .awssld__prev {
+                padding: 20px;
+            }
+            .awssld.awssld--organic-arrows {
+                width: 562px;
+                height: 688px;
+                z-index: 0;
+        
+                img {
+                object-fit: contain;
+                }
+            }
+            .particular-rental-items__image {
+                margin-bottom: 23px;
+                width: 550px;
+            }
+
+            .particular-rental-items__period {
+                display: flex;
+                margin-bottom: 8px;
+                margin-top: 50px;
+
+                input {
+                    border: none;
+                    outline: none;
+                    border-radius: 0;
+                    border-bottom: 1px solid $color-gray;
+                    width: 188px;
+                    font-size: inherit;
+                    margin: 0 0 8px 20px;
+                    text-align: center;
+                    font-family: $font-family-lato-light;
+                }
+            }
+
+            .particular-rental-items__confirm {
+                font-size: 24px;
+                border-radius: 0;
+                font-family: $font-family-lato-light;
+                width: fit-content;
+            }
+
+            .particular-rental-items__confirm {
+                margin-bottom: 8px;
+                padding: 14px 198px;
+            }
+        }
+
+        .particular-rental-items__description {
+            width: 50%;
+
+            .particular-rental-items__title {
+                font-size: 48px;
+                line-height: 40px;
+                padding-bottom: 14px;
+                font-family: $font-family-didot;
+                color: $color-white;
+            }
+
+            .particular-rental-items__price {
+                font-size: 30px;
+                line-height: 36px;
+                color: $color-neutral-orange;
+                margin-bottom: 20px;
+
+                span {
+                    font-size: 18px;
+                }
+            }
+
+            .particular-rental-items__size {
+                .particular-rental-items__title {
+                    font-size: 33px;
+                    line-height: 36px;
+                    font-family: $font-family-didot;
+                    color: $color-white;
+                }
+
+                .particular-rental-items__action {
+                    display: inline-block;
+                    padding: 12px 28px;
+                    background: $color-container-box;
+                    border-radius: 10px;
+                    margin-bottom: 30px;
+
+                    a {
+                        color: $color-neutral-gray;
+                    }
+                }
+            }
+
+            .particular-rental-items__size {
+                margin-bottom: 30px;
+
+                .particular-rental-items__action {
+                    margin-bottom: 16px;
+
+                    a:not(:first-child) {
+                        padding: 0 0 0 56px;
+                    }
+                }
+
+                .particular-rental-items__size-chart {
+                    padding: 6px 40px;
+                    border-radius: 0;
+                    font-family: $font-family-lato-light;
+                }
+
+                .particular-rental-items__size-table {
+                    text-align: -webkit-center;
+                    display: none;
+
+                    table {
+                        border-collapse: collapse;
+                    }
+
+                    table, tr, td {
+                        border: 1px solid $color-neutral-gray;
+                    }
+
+                    th, tr, td {
+                        padding: 10px 7px;
+                        font-weight: normal;
+                    }
+
+                    .particular-rental-items__table-header {
+                        font-size: 22px;
+                    }
+
+                    .particular-rental-items__table-row {
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                }
+            }
+
+            .particular-rental-items__specifications, .particular-rental-items__sub-desc {
+                margin-bottom: 30px;
+
+                .particular-rental-items__specs-title, .particular-rental-items__sub-desc-title {
+                    font-size: 32px;
+                    line-height: 32px;
+                    padding-bottom: 8px;
+                    font-weight: normal;
+                    color: $color-white;
+                }
+
+                .particular-rental-items__specs-desc, .particular-rental-items__sub-desc-desc {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+            }
+
+            .particular-rental-items__sub-desc {
+                .particular-items__sub-desc-desc {
+                    padding: 0 64px;
+                }
+            }
+
+            .particular-rental-items__pincode {    
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input[type=number] {
+                    -moz-appearance: textfield;
+                }
+
+                .particular-rental-items__pincode-input {
+                    border: none;
+                    outline: none;
+                    border-radius: 0;
+                    border-bottom: 1px solid $color-gray;
+                    width: 210px;
+                    font-size: inherit;
+                    margin-bottom: 8px;
+                    text-align: center;
+                    font-family: $font-family-lato-light;
+                }
+
+                .particular-rental-items__pincode-check {
+                    padding: 10px 58px;
+                    border-radius: 0;
+                    font-family: $font-family-lato-light;
+                }
+            }
+        }
+    }
+
+    .particular-rental-items__rating {
+        background: $color-container-box;
+        padding: 20px 12px;
+        margin-bottom: 40px;
+
+        .particular-rental-items__heading {
+            display: flex;
+            font-size: inherit;
+            margin-bottom: 25px;
+
+            h5 {
+                font-family: $font-family-lato-light;
+                font-weight: normal;
+                font-size: 30px;
+                line-height: 39px;
+                color: $color-white;
+            }
+
+            .particular-rental-items__rating-data {
+                display: flex;
+                margin-left: 32px;
+                padding: 6px 8px;
+                background: $color-neutral-dark-gray;
+                border-radius: 5px;
+
+                .particular-rental-items__rating-icon {
+                    width: 22px;
+                    padding-right: 10px;
+                }
+            }
+        }
+
+        .particular-rental-items__individual-rating {
+            margin-bottom: 24px;
+
+            .particular-rental-items__individual-rating-count {
+                margin-bottom: 10px;
+                img {
+                    width: 30px;
+                    padding-right: 10px;
+                }
+            }   
+
+            .particular-rental-items__rating-title {
+                padding-bottom: 8px;
+                color: $color-white ;
+            }
+
+            .particular-rental-items__rating-desc {
+                padding-bottom: 8px;
+            }
+
+            .particular-rental-items__rating-author {
+                color: $color-neutral-medium-gray;
+                padding-bottom: 8px;
+                border-bottom: 3px solid $color-neutral-dark-gray;
+                width: fit-content;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .particular-rental-items__rating-show-button {
+            text-align: center;
+
+            .particular-rental-items__rating-show-more {
+                font-family: $font-family-lato-normal;
+                padding: 6px 26px;
+                border-radius: 0;
+            }
+        }
+    }
+}

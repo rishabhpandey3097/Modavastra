@@ -1,0 +1,349 @@
+@import "./mixins.scss";
+
+.container--subproduct {
+  margin-top: 85px;
+  // margin: 85px 60px;
+
+  .subproduct-box__box {
+    display: grid;
+    grid-template-columns: auto auto ;
+    overflow: hidden;
+  }
+
+  .subproduct-box {
+    // margin-top: 20px;
+    // margin-bottom: 10px;
+    width: 48vw;
+    position: relative;
+  }
+
+  .subproduct-box__image {
+    height: 400px;
+    width:103%;
+    object-fit: fill;
+    object-position: center;
+  }
+
+  .subproduct-box__link {
+    width: 30%;
+    text-align: center;
+    // position: absolute;
+
+    a {
+      border-radius: 0;
+      font-size: 18px;
+      line-height: 20px;
+      cursor: pointer;
+      background: $color-white;
+      color: $color-black;
+      border: 2px solid $color-white;
+      padding: 10px 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    a:hover {
+      background: transparent;
+    }
+  }
+
+  .subproduct-reference {
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    color: $color-primary-gray;
+    padding-bottom: 80px;
+
+    p {
+      padding: 32px 20% 12px;
+    }
+
+    .subproduct-reference__button {
+      padding: 11px 66px;
+      border-radius: 0;
+    }
+  }
+}
+
+// Send Reference CSS
+.container--send-reference {
+  margin-top: 125px;
+  padding: 0 20%;
+
+  .send-reference {
+    display: flex;
+    font-size: 18px;
+    line-height: 27px;
+    color: $color-primary-gray;
+
+    .send-reference__box {
+      .send-reference__upload {
+        background: $color-gray;
+        width: 440px;
+        height: 440px;
+        text-align: left;
+        margin-right: 40px;
+      }
+
+      .send-reference__upload-text {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 56%;
+        left: 32%;
+        align-items: center;
+        color: $color-white;
+
+        img {
+          width: 24px;
+        }
+      }
+    }
+
+    .send-reference__desc {
+      margin-top: 50px;
+
+      textarea {
+        background: $color-neutral-gray;
+        margin: 6px 0 12px;
+        width: 100%;
+        font-size: 14px;
+        text-align: justify;
+      }
+
+      .send-reference__button {
+        padding: 11px 66px;
+        border-radius: 0;
+        width: 100%;
+        background: $color-neutral-purple;
+      }
+    }
+  }
+}
+
+// Product Items CSS
+.container--product-items {
+  margin-top: 120px;
+  padding: 0 40px 85px 42px;
+  position: relative;
+  display: flex;
+
+  .search-items {
+    margin-left: 27%;
+  }
+
+  .product-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    justify-content: space-between;
+    margin-left: 27%;
+    width: 100vw;
+
+    .product-items__box {
+      text-align: center;
+     
+      
+     
+
+      .product-items__description {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px;
+        color: $color-black;
+
+       
+      }
+    }
+
+    .product-items__image {
+      margin-bottom: 8px;
+      object-fit: fill;
+      width: 224px;
+      height: 292px;
+    }
+  }
+}
+
+@include media(tablet , phone){
+  .container--product-items {
+    margin-top: 0px;
+    padding: 0px;
+    position: relative;
+    display: flex;
+  
+  .product-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    justify-content: space-between;
+    justify-content: left;
+    margin-left: 0px;
+   
+    width: 100vw;
+  }
+}
+}
+@include media(tablet ){
+  .container--product-items {
+    margin-top: 0px;
+    padding: 0px;
+    position: relative;
+    display: flex;
+  
+  .product-items{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    justify-content: space-between;
+    justify-content: left;
+    margin-left: 0px;
+   
+    width: 100vw;
+  }
+}
+}
+@include media(tablet,phone){
+          
+  .product-items__description{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    color: $color-black;
+    margin-left: 25px;
+    color: red;
+  }
+}
+@include breakpoint-tablet {
+  // padding: 20px;
+
+  .subproduct-box__box {
+    display: grid;
+    grid-template-columns: auto auto;
+    overflow: hidden;
+  }
+
+  .subproduct-box {
+    // margin-top: 20px;
+    // margin-bottom: 10px;
+    width: 50vw;
+    position: relative;
+  }
+
+  .product-items {
+    margin-top: 15px;
+  }
+
+  .product-cover {
+    .product-items__image {
+      width: 240px;
+      height: 340px;
+    }
+  }
+}
+
+@include breakpoint-phone {
+  padding: 15px;
+
+  .product-items {
+    margin-top: 5px;
+  }
+
+  .product-cover {
+    .product-items__image {
+      width: 125px;
+      height: 185px;
+    }
+  }
+}
+
+.star-normal {
+  background-image: url(../images/star.svg);
+}
+
+.star-colored {
+  background-image: url(../images/star-colored.svg);
+}
+
+@include media (tablet) {
+  .subproduct-box__box {
+    display: grid !important;
+    grid-template-columns: auto !important;
+    overflow: hidden !important;
+  }
+
+  .subproduct-box {
+    // margin-top: 20px !important;
+    // margin-bottom: 10px !important;
+    width: 98vw !important;
+    position: relative !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .subproduct-box__box {
+    display: grid !important;
+    grid-template-columns: auto !important;
+    overflow: hidden !important;
+  }
+
+  .subproduct-box {
+    // margin-top: 20px !important;
+    // margin-bottom: 10px !important;
+    width: 100vw !important;
+    position: relative !important;
+  }
+}
+@include media(tablet,phone){
+  .product-items__box{
+    text-align: left !important;
+  }
+}
+@include media(phone){
+  .product-items__image{
+    width: 160px !important;
+  }
+}
+@include media(tablet){
+  .product-items__image{
+    width: 320px !important;
+  }
+}
+@include media(tablet,phone){
+  .product-items__description{
+    margin: 0px;
+    text-align: right;
+  }
+}
+
+@include media(tablet,phone){
+  .filter{
+    margin-top: 120px;
+    margin-bottom: 10px;
+    margin-left: 230px;
+    
+  }
+}
+
+.modal{
+  height: 500px;
+}
+@include media (tablet,phone){
+  .ShoworHide{
+    display: none;
+  }
+}
+.ant-modal-content{
+  width: 0% !important;
+}
+
+.ant-btn  {
+  background-color: whitesmoke;
+  color: black;
+  border: none;
+}
+
+

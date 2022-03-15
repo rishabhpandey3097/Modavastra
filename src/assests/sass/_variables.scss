@@ -1,0 +1,100 @@
+/* -------------------------------------------- Font-family ------------------------------------------------- */
+
+@font-face {
+  font-family: "Josefin";
+  src: url(../fonts/JosefinSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Lato Normal";
+  src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Lato Light";
+  src: url(../fonts/Lato-Light.ttf);
+}
+
+@font-face {
+  font-family: "Lato Thin";
+  src: url(../fonts/Lato-Thin.ttf);
+}
+
+@font-face {
+  font-family: "Didot";
+  src: url(../fonts/Didot-Title.otf);
+}
+
+// -------------------------------- Poppins Font family ----------------------------------
+@font-face {
+  font-family: "Poppins Regular";
+  src: url(../fonts/poppins-regular.woff2);
+}
+
+@font-face {
+  font-family: "Poppins Bold";
+  src: url(../fonts/poppins-bold.woff2);
+}
+
+@font-face {
+  font-family: "Poppins Semi-Bold";
+  src: url(../fonts/poppins-semibold.woff2);
+}
+
+$font-family-josefin: "Josefin";
+$font-family-lato-normal: "Lato Normal";
+$font-family-lato-light: "Lato Light";
+$font-family-lato-thin: "Lato Thin";
+$font-family-didot: "Didot";
+$font-family-poppins-normal: "Poppins Regular";
+$font-family-poppins-bold: "Poppins Bold";
+$font-family-poppins-semibold: "Poppins Semi-Bold";
+
+// Base Font Variables
+
+$font-family: $font-family-lato-normal;
+$font-size: 12px;
+$font-height: 1;
+
+//== Color
+
+$color-white: #fff;
+$color-black: #000;
+$color-orange: #ff6903;
+$color-red: #ff8484;
+$color-yellow: #ffbc03;
+$color-gray: #8d8d8d;
+$color-blue: #00aee5;
+$color-purple: #a585c1;
+$color-peach: #eebbcc;
+$color-pink: #ffd5cc;
+
+// Exhibit Colors
+
+$color-background: #1b1c1e;
+$color-container-box: #222325;
+$color-top-bar: #141517;
+$color-shadow: rgba(0, 0, 0, 0.25);
+
+// Neutral Colors
+
+$color-neutral-gray: #e1e1e1;
+$color-neutral-light-gray: #f9f9f9;
+$color-neutral-purple: #c5afda;
+$color-neutral-dark-gray: #38393b;
+$color-neutral-medium-gray: #d5d5d5;
+$color-neutral-orange: #ffd2b4;
+$color-neutral-peach: #ffe7e2;
+
+// Primary Colors
+
+$color-primary-gray: #3c3c3c;
+$color-primary-purple: #7a628f;
+$color-primary-dark-gray: #323232;
+
+// breakpoints
+
+$size-phone-max-width: 424px;
+$size-tablet-min-width: 425px;
+$size-tablet-max-width: 768px;
+$size-desktop-min-width: 1201px;

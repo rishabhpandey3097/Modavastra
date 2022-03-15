@@ -1,0 +1,390 @@
+/* My Account Container CSS */
+.container__my-account {
+  margin-top: 170px;
+  display: flex;
+
+  .left-container {
+    flex: 0 1 30%;
+    max-width: 30%;
+    margin: 0 0 0 15%;
+    text-align: start;
+
+    .action-links {
+      display: flex;
+      flex-direction: column;
+      font-size: 18px;
+      line-height: 27px;
+      border-right: 2px solid $color-primary-gray;
+
+      a {
+        margin-bottom: 16px;
+
+        :hover {
+          font-family: $font-family-poppins-semibold;
+        }
+      }
+    }
+  }
+
+  .right-container {
+    flex: 0 1 70%;
+    max-width: 70%;
+
+    .user-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: $color-primary-gray;
+
+      h3 {
+        font-size: 24px;
+        line-height: 36px;
+        padding: 16px 0 8px 0;
+        color: $color-purple;
+        cursor: pointer;
+      }
+
+      input {
+        font-weight: normal;
+        font-size: 40px;
+        line-height: 20px;
+        text-align: center;
+        margin-top: 15px;
+        background: #1b1c1e;
+        width: 400px;
+        margin-bottom: 15px;
+        padding: 16px 0 8px 0;
+      }
+
+      p {
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+        padding: 0 130px;
+      }
+
+      img {
+        width: 175px;
+      }
+    }
+  }
+
+  @include media(tablet, phone) {
+    flex-direction: row;
+  }
+
+  @include breakpoint-tablet {
+    margin-top: 120px;
+
+    .left-container {
+      margin: 40px 0 0 8%;
+    }
+
+    .right-container {
+      margin: 40px 0 0 0;
+
+      .user-profile {
+        img {
+          width: 100px;
+        }
+
+        h3 {
+          padding: 12px 0 8px 0;
+          font-size: 35px;
+          line-height: 40px;
+        }
+
+        p {
+          padding: 0 40px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint-phone {
+    margin-top: 80px;
+
+    .left-container {
+      margin: 40px 0 0 4%;
+
+      .action-links {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .right-container {
+      margin: 40px 0 0 0;
+
+      .user-profile {
+        img {
+          width: 50px;
+        }
+
+        h3 {
+          padding: 8px 0;
+          font-size: 24px;
+          line-height: 28px;
+        }
+
+        p {
+          padding: 0 15px;
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}
+
+/* Generic Container CSS */
+.container__generic {
+  margin-top: 85px;
+  display: flex;
+
+  .left-container {
+    flex: 0 1 17%;
+    max-width: 30%;
+    margin: 85px 0 0 15%;
+    text-align: start;
+  }
+
+  .right-container {
+    flex: 0 1 70%;
+    max-width: 70%;
+    margin: 82px 0 0 3%;
+    align-content: start;
+  }
+
+  .action-links {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    line-height: 27px;
+    border-right: 2px solid $color-primary-gray;
+
+    a {
+      margin-bottom: 16px;
+    }
+
+    a:hover {
+      font-weight: $font-family-poppins-bold;
+      font-weight: 600;
+    }
+  }
+
+  .user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $color-primary-gray;
+
+    h3 {
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 48px;
+      padding: 16px 0 8px 0;
+      color: $color-primary-gray;
+      cursor: pointer;
+    }
+
+    input {
+      font-weight: normal;
+      font-size: 40px;
+      line-height: 20px;
+      text-align: center;
+      margin-top: 15px;
+      background: #1b1c1e;
+      width: 400px;
+      margin-bottom: 15px;
+      padding: 16px 0 8px 0;
+    }
+
+    p {
+      font-size: 24px;
+      line-height: 29px;
+      text-align: center;
+      padding: 0 130px;
+    }
+
+    img {
+      width: 175px;
+    }
+  }
+
+  @include media(tablet, phone) {
+    flex-direction: row;
+
+    .left-container {
+      margin: 40px 0 0 4%;
+    }
+  }
+
+  @include breakpoint-tablet {
+    .left-container {
+      .action-links {
+        font-size: 20px;
+        line-height: 24px;
+
+        a {
+          margin-bottom: 12px;
+        }
+      }
+    }
+
+    .right-container {
+      margin: 40px 0 0 30px;
+    }
+  }
+
+  @include breakpoint-phone {
+    .left-container {
+      .action-links {
+        font-size: 16px;
+        line-height: 20px;
+
+        a {
+          margin-bottom: 10px;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .right-container {
+      margin: 40px 0 0 8px;
+    }
+  }
+}
+
+// Address input CSS
+.address-details {
+  margin-bottom: 40px;
+  width: 75%;
+
+  .address-details-text {
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 30px;
+    color: $color-primary-gray;
+    text-align: left;
+  }
+
+  .current-address {
+    display: flex;
+    flex-direction: column;
+
+    .current-address__textarea {
+      textarea {
+        background-color: $color-neutral-gray;
+        margin: 12px 0 20px 0;
+        width: 100%;
+        border: none;
+      }
+
+      button {
+        padding: 6px 50px;
+        margin-right: 50px;
+        margin-top: 133px;
+      }
+
+      .edit-address {
+        float: right;
+        margin: -70px 10px 0 0;
+        position: relative;
+      }
+    }
+  }
+
+  .new-address {
+    display: flex;
+    flex-direction: column;
+
+    .address-details-text {
+      margin-bottom: 16px;
+    }
+
+    .address-locality,
+    .city-state {
+      display: flex;
+    }
+
+    .address-field__box {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        margin-bottom: 1px;
+      }
+
+      i {
+        color: $color-red;
+        font-size: 13px;
+        margin-bottom: 12px;
+        text-align: left;
+      }
+    }
+
+    button {
+      width: fit-content;
+    }
+  }
+
+  @include media(tablet, phone) {
+    width: 100%;
+
+    .new-address {
+      .address-locality,
+      .city-state {
+        flex-direction: column;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  @include breakpoint-tablet {
+    .address-details-text {
+      font-size: 24px;
+      line-height: 26px;
+    }
+  }
+
+  @include breakpoint-phone {
+    .address-details-text {
+      font-size: 20px;
+      line-height: 24px;
+    }
+
+    .current-address {
+      .current-address__textarea {
+        .edit-address {
+          margin: -66px 8px 0 0;
+        }
+
+        button {
+          padding: 4px 30px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .new-address {
+      .address-details-text {
+        margin-bottom: 12px;
+      }
+
+      .address-field__box {
+        button {
+          padding: 6px 40px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+.logout {
+  color: $color-red;
+}

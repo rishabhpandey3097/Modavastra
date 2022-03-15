@@ -1,0 +1,82 @@
+//== Base
+
+body {
+  background-color: $color-white;
+  // background-color: #eee;
+  font-family: $font-family-poppins-normal;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: $color-primary-gray;
+}
+
+button {
+  font-family: $font-family-poppins-normal;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: $color-purple;
+  color: $color-primary-gray;
+  font-size: 18px;
+  line-height: 27px;
+  font-family: $font-family-poppins-normal;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid $color-primary-gray;
+  color: $color-primary-gray;
+}
+
+input {
+  background-color: transparent;
+  border: 1px solid $color-neutral-gray;
+  border-radius: 5px;
+  color: $color-gray;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+form {
+  text-align: center;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $color-primary-gray;
+}
+
+a:hover {
+  color: $color-primary-gray;
+}
+
+.link-text {
+  color: $color-orange;
+  font-size: 28px;
+  line-height: 34px;
+}
+i {
+  color: red;
+}
+
+* {
+  box-sizing: border-box;
+}

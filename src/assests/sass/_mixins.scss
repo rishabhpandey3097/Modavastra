@@ -1,0 +1,57 @@
+// Mixins for the Viewports breakpoints
+@mixin breakpoint-phone {
+  @media (max-width: $size-phone-max-width) {
+    @content;
+  }
+}
+
+@mixin breakpoint-tablet {
+  @media (min-width: $size-tablet-min-width) and (max-width: $size-tablet-max-width) {
+    @content;
+  }
+}
+
+@mixin breakpoint-desktop {
+  @media (min-width: $size-desktop-min-width) {
+    @content;
+  }
+}
+
+@mixin breakpoint-desktop-large {
+  @media (min-width: 1441px) {
+    @content;
+  }
+}
+
+@mixin media($keys...) {
+  @each $key in $keys {
+    @if ($key == phone) {
+      @include breakpoint-phone {
+        @content;
+      }
+    } @else if ($key == tablet) {
+      @include breakpoint-tablet {
+        @content;
+      }
+    } @else if ($key == desktop) {
+      @include breakpoint-desktop {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: inherit;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-neutral-gray;
+    border-radius: 6px;
+  }
+}
