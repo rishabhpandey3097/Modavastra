@@ -21,7 +21,7 @@ export const getSubProductData = (
     server
       .get(`v1/api/items/product/${slug}/subproduct/${subSlug}`)
       .then((response) => {
-        console.log("DYOO Products", response);
+        // console.log("DYOO Products", response);
         if (response.data.success) {
           const productList = response.data.data.items.filter(
             (item) => item.active

@@ -14,6 +14,8 @@ import { BagReducer } from "./ProductBagReducer";
 import { similarProductsReducer } from "./SimilarProductsReducer";
 import { bannerReducer } from "./BannerReducer";
 import { searchReducer } from "./SearchReducer";
+import { bestSellerReducer } from "./BestSellerReducer";
+import { salesReducer } from "./SalesReducer";
 
 const appReducer = combineReducers({
   auth: userAccountReducer,
@@ -22,6 +24,8 @@ const appReducer = combineReducers({
   subProductReducer: subProductReducer,
   orderReducer: OrderReducer,
   wishListReducer,
+  bestSellerReducer,
+  salesReducer,
   productCategories: productCategoryReducer,
   subProductCategories: subProductCategoryReducer,
   productDetails: productDetailsReducer,

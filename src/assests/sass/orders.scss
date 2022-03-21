@@ -23,7 +23,7 @@
 
   .product-details {
     width: 100%;
-  
+
     .link-text {
       position: absolute;
       right: 175px;
@@ -41,7 +41,7 @@
       font-size: 16px;
       line-height: 24px;
     }
-    
+
     .product-status {
       margin: 8px 0 0 0;
       font-size: 16px;
@@ -49,18 +49,18 @@
       font-weight: normal;
       color: $color-primary-gray;
     }
-    
+
     .product-review {
       display: flex;
       align-items: center;
       margin-top: 140px;
       justify-content: space-between;
-      
+
       p {
         font-size: 18px;
         line-height: 27px;
       }
-    
+
       .star-rating {
         margin-right: 11px;
       }
@@ -342,8 +342,8 @@
 
       .wishlist-details {
         .wishlist-names {
-          font-size: 24px;
-          line-height: 28px;
+          font-size: 13px;
+          line-height: 16px;
           margin-bottom: 6px;
         }
 
@@ -362,8 +362,9 @@
           }
 
           button {
-            padding: 5px 30px;
+            padding: 2px 30px;
             font-size: 16px;
+            justify-self: flex-end;
           }
         }
       }
@@ -515,7 +516,7 @@
             line-height: 30px;
             margin-bottom: 8px;
           }
-  
+
           .product-bag__price {
             font-size: 20px;
             line-height: 24px;
@@ -559,7 +560,7 @@
             line-height: 24px;
             margin-bottom: 6px;
           }
-  
+
           .product-bag__price {
             font-size: 16px;
             line-height: 20px;
@@ -570,7 +571,8 @@
       .product-bag__action {
         margin-top: 12px;
 
-        .product-bag__remove, button {
+        .product-bag__remove,
+        button {
           padding: 0 10px;
           font-size: 16px;
         }
@@ -655,6 +657,8 @@
   .checkout__address {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    width: 80%;
 
     .checkout__address-text {
       margin-bottom: 16px;
@@ -666,6 +670,8 @@
 
     input {
       margin-bottom: 12px;
+      margin-right: 10px;
+      width: 45%;
     }
 
     .checkout__checkbox {
@@ -692,6 +698,14 @@
     button {
       font-family: $font-family-lato-normal;
     }
+  }
+
+  .checkout_btn {
+    width: auto;
+    color: black;
+    background-color: #a585c1;
+    border-radius: 3px;
+    padding: 10px 15px;
   }
 
   @include breakpoint-tablet {

@@ -20,7 +20,7 @@ import Orders from "./components/Account/Orders";
 import ProductBag from "./components/Account/ProductBag";
 import RateReviews from "./components/Account/RateReviews";
 import Wishlist from "./components/Account/Wishlist";
-// import Payment from "./components/Account/Payment";
+import Payment from "./components/Account/Payment";
 
 // Authentication ages
 import LoginForm from "./components/Auth/LoginForm";
@@ -46,6 +46,8 @@ import { ViewJewellerySubProductItems } from "./components/Jewellery/ProductItem
 import { ViewSearchSubProductItems } from "./components/Search/SearchItems";
 import { ViewSearchParticularItems } from "./components/Search/SearchParticularItem";
 
+// Sale Products
+
 // Rental pages
 import ViewRentalItems from "./components/Rentals/RentalItems";
 import { ViewParticularDressRental } from "./components/Rentals/ParticularDressRental";
@@ -60,6 +62,9 @@ import TermsAndCondition from "./components/Policy/TermsAndCondition";
 import RefundPolicy from "./components/Policy/RefundPolicy";
 
 import NotFound from "./components/NotFound";
+import PrivacyPolicy from "./components/Policy/PrivacyProlicy";
+import Sale from "./components/Sale/Sale";
+import { ViewSaleItem } from "./components/Sale/SaleItem";
 
 const App = () => {
   return (
@@ -110,6 +115,14 @@ const App = () => {
             component={ViewClothingParticularItems}
           />
 
+          {/* Sale Products */}
+          <Route exact path={"/products/sale"} component={Sale} />
+          <Route
+            exact
+            path={"/products/sale/:slug/:itemName"}
+            component={ViewSaleItem}
+          />
+
           {/* Jewellery Routes */}
           <Route
             exact
@@ -133,8 +146,15 @@ const App = () => {
             path="/Search/items/:slug/:name"
             component={ViewSearchParticularItems}
           />
+          <Route
+            exact
+            path="/TermsAndCondition"
+            component={TermsAndCondition}
+          />
+          <Route exact path="/RefundPolicy" component={RefundPolicy} />
+          <Route exact path="/PrivacyPolicy" component={PrivacyPolicy} />
 
-          {/* Account routes  */}
+          {/* Account Routes  */}
           <Route exact path="/myaccount" component={MyAccount} />
           <Route exact path="/address" component={Address} />
           <Route exact path="/orders" component={Orders} />
@@ -142,6 +162,8 @@ const App = () => {
           <Route exact path="/wishlist" component={Wishlist} />
           <Route exact path="/bag" component={ProductBag} />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/payment" component={Payment} />
+
           {/* <PrivateRoute exact path="/payment" component={Payment} /> */}
           {/* <Route exact path="/confirmation" component={Confirmation} /> */}
           <Route exact path="/change-password" component={ChangePassword} />
@@ -170,13 +192,6 @@ const App = () => {
             path="/rental/necklace/:slug"
             children={<ViewParticularNecklaceRental />}
           />
-
-          <Route
-            exact
-            path="/TermsAndCondition"
-            component={TermsAndCondition}
-          />
-          <Route exact path="/RefundPolicy" component={RefundPolicy} />
 
           <Redirect to="/not-found" />
         </Switch>

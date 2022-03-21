@@ -7,15 +7,9 @@ import Filter from "../Filter";
 import FilterMobile from "../Filtermobile";
 import { Modal, Button } from "antd";
 
-import { getSubProductData } from "../../redux/actions/SubProductItem";
+import { getProductsOnSale } from "../../redux/actions/SalesAction";
 
-export const ViewClothingSubProductItems = () => {
-  let { subSlug } = useParams();
-
-  return <SubProductItems slug={subSlug} />;
-};
-
-const SubProductItems = ({ slug }) => {
+const Sale = (props) => {
   const history = useHistory();
   const [products, setProducts] = useState([]);
   const [items, setItems] = useState([]);
@@ -40,7 +34,8 @@ const SubProductItems = ({ slug }) => {
   // );
 
   useEffect(() => {
-    dispatch(getSubProductData("CLOTH", slug, history));
+    console.log("hello from sales page");
+    dispatch(getProductsOnSale(history));
   }, []);
 
   useEffect(() => {
@@ -49,7 +44,8 @@ const SubProductItems = ({ slug }) => {
     let subscribe = true;
     store.subscribe(
       () => {
-        const newState = store.getState().subProductReducer.getSubProductsData;
+        console.log(store.getState());
+        const newState = store.getState().salesReducer.saleProducts;
         if (subscribe) {
           // console.log(newState);
           setProducts(newState);
@@ -69,7 +65,7 @@ const SubProductItems = ({ slug }) => {
   }, [store]);
 
   const onChangeDesigner = (code) => {
-    dispatch(getSubProductData("CLOTH", code));
+    // dispatch(getSubProductData("CLOTH", code));
   };
   const onFilter = (range) => {
     const arr = [...items];
@@ -109,16 +105,20 @@ const SubProductItems = ({ slug }) => {
         <div className="product-items">
           {products.map((res) => (
             <div key={res?.id} className="product-items__box">
-              <Link to={`/clothing/items/${res?.id}/${res?.name}`}>
+              <Link to={`/products/sale/${res?.itemId}/${res?.items.name}`}>
                 <img
                   className="product-items__image"
-                  src={res?.imgUrl}
+                  src={res?.items.imgUrl}
                   alt="saree"
                 ></img>
               </Link>
-              <div className="product-items__description">
-                <span className="product-items__title">{res?.name}</span>
-                <span className="product-items__price">₹ {res?.price}</span>
+              <div className="sale-item__description">
+                <div className="sale-items__title">{res?.items.name}</div>
+                <div className="sale-items__sale_price">₹ {res?.salePrice}</div>
+                <div className="sale-items__sale_price">
+                  <del> ₹ {res?.price}</del>
+                </div>
+                <div className="sale-items__sale_price">({res?.msg})</div>
               </div>
             </div>
           ))}
@@ -127,3 +127,5 @@ const SubProductItems = ({ slug }) => {
     </>
   );
 };
+
+export default Sale;

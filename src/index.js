@@ -9,13 +9,11 @@ import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store.store} persistor={store.persistor}>
-      <PersistGate loading={null} persistor={store.persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store.store} persistor={store.persistor}>
+    <PersistGate loading={null} persistor={store.persistor}>
+      <App />
+    </PersistGate>
+  </Provider>,
   document.getElementById("root")
 );
 

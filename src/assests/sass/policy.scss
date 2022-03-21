@@ -1,0 +1,57 @@
+// Refund Policy
+.policy-container,
+.privacy-policy__container,
+.terms-container {
+  margin: 85px 140px;
+  margin-bottom: 85px;
+  color: #3c3c3c;
+
+  h1 {
+    font-family: $font-family-poppins-semibold;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  h2 {
+    font-family: $font-family-poppins-semibold;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-family: $font-family-poppins-semibold;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 500;
+  }
+
+  p {
+    font-family: $font-family-poppins-normal;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: justify;
+    margin: 10px 0 20px 0;
+  }
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+    li {
+      font-family: $font-family-poppins-normal;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 400;
+      text-align: justify;
+    }
+  }
+}
+
+@include media(tablet, phone) {
+  .policy-container,
+  .privacy-policy__container,
+  .terms-container {
+    margin: 85px 5px;
+  }
+}

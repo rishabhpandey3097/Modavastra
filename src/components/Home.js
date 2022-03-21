@@ -19,27 +19,19 @@ import clothing from "../assests/images/content/clothing.png";
 import jewellary from "../assests/images/content/jewellery.png";
 import sale_banner from "../assests/images/content/sale_banner.png";
 import { getBannerImages } from "../redux/actions/BannerAction";
-
-// import creative_partner_1 from "../assests/images/content/creative_partner_1.png";
-// import creative_partner_2 from "../assests/images/content/creative_partner_2.png";
-// import creative_partner_3 from "../assests/images/content/creative_partner_3.png";
-// import creative_partner_4 from "../assests/images/content/creative_partner_4.png";
-// import creative_partner_5 from "../assests/images/content/creative_partner_5.png";
-// import creative_partner_6 from "../assests/images/content/creative_partner_6.png";
-// import creative_partner_7 from "../assests/images/content/creative_partner_7.png";
-// import creative_partner_8 from "../assests/images/content/creative_partner_8.png";
-// import creative_partner_9 from "../assests/images/content/creative_partner_9.png";
-// import creative_partner_10 from "../assests/images/content/creative_partner_10.png";
+import { getBestSellerProducts } from "../redux/actions/BestSeller";
 
 const Home = (props) => {
   const [designers, setDesigners] = useState([]);
   const [bannerImages, setBannerImages] = useState([]);
+  const [bestSeller, setBestSeller] = useState([]);
   const dispatch = useDispatch();
   const store = useStore();
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getSubProductCategoryData("CLOTH", history));
+    dispatch(getBestSellerProducts(history));
     dispatch(getBannerImages(history));
   }, []);
 
@@ -51,11 +43,13 @@ const Home = (props) => {
         console.log(newState);
         setDesigners(newState.subProductCategories.getSubCategories);
         setBannerImages(newState.bannerProducts.bannerImages);
+        setBestSeller(newState.bestSellerReducer.bestSeller);
       }
     });
 
     return () => {
       // setDesigners([]);
+      setBestSeller([]);
       subscribe = false;
     };
   }, [store]);
@@ -88,38 +82,31 @@ const Home = (props) => {
           <div className="product-best-seller__title">
             <span>BEST SELLER</span>
           </div>
-          <div className="product-best-seller__view-more">
-            {/* <Link to="/product/DYOO">View More</Link> */}
-          </div>
+          {/* <div className="product-best-seller__view-more">
+            <Link to="/product/DYOO">View More</Link>
+          </div> */}
           <div className="product-best-seller__items">
-            <div className="product-best-seller__item">
-              <a href="#">
-                <img src={best_seller_1} alt=""></img>
-              </a>
-              <span>Gorgeous Designer Saree</span>
-              <span>₹ 2,599.00</span>
-            </div>
-            <div className="product-best-seller__item">
-              <a href="#">
-                <img src={best_seller_2} alt=""></img>
-              </a>
-              <span>Traditional Saree</span>
-              <span>₹ 2,599.00</span>
-            </div>
-            <div className="product-best-seller__item">
-              <a href="#">
-                <img src={best_seller_3} alt=""></img>
-              </a>
-              <span>Net Multi Work Saree</span>
-              <span>₹ 2,599.00</span>
-            </div>
-            <div className="product-best-seller__item">
-              <a href="#">
-                <img src={best_seller_4} alt=""></img>
-              </a>
-              <span>Silk Saree</span>
-              <span>₹ 2,599.00</span>
-            </div>
+            {bestSeller.map((item) => {
+              return (
+                <div key={item?.id} className="product-best-seller__item">
+                  <Link
+                    to={`/${
+                      item.proCode === "CLOTH"
+                        ? "clothing"
+                        : item.proCode === "DYOO"
+                        ? "DYOO"
+                        : item.proCode === "JEW"
+                        ? "jewellery"
+                        : null
+                    }/items/${item?.id}/${item?.name}`}
+                  >
+                    <img src={item?.imgUrl} alt=""></img>
+                  </Link>
+                  <div>{item?.name}</div>
+                  <div>₹ {item?.price}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -157,19 +144,13 @@ const Home = (props) => {
                 </div>
               );
             })}
-            {/* <div className="product-designers__item">
-              <a href="#">
-                <img src={designer_2} alt=""></img>
-              </a>
-            </div>
-             */}
           </div>
         </div>
 
         <div className="product-sale-banner">
-          <a>
+          <Link to={"/products/sale"}>
             <img src={sale_banner}></img>
-          </a>
+          </Link>
         </div>
 
         {/* <div className='product-creative-partners'>

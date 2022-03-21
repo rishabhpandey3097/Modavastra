@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header/Header";
+import Header from "../Header/Header";
 import { useHistory } from "react-router-dom";
 import designer from "../../assests/images/content/bangles.png";
 import progress_bar from "../../assests/images/payment_progress_bar.svg";

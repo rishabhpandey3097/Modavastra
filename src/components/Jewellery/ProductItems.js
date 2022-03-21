@@ -63,7 +63,7 @@ const SubProductItems = ({ slug }) => {
           pageName={"product-filter--jewellery"}
           filterProducts={onFilter}
         />
-        <div className="product-items">
+        <div className="product-items product-items__jewellery">
           {jewelleries?.map((res) => {
             return (
               <div key={res?.id} className="product-items__box">

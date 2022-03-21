@@ -26,7 +26,7 @@ const SubProduct = ({ slug }) => {
     // let subscribe = true;
     store.subscribe(() => {
       const products = store.getState().subProductCategories.getSubCategories;
-      console.log(products);
+      // console.log(products);
       setSubCategories(products);
     });
 
@@ -38,13 +38,13 @@ const SubProduct = ({ slug }) => {
   return (
     <>
       <Header pageName={"Design your own outfit"} headerType={"header--main"} />
-      <div className="container--subproduct">
-        <div className="subproduct-box__box">
+      <div className="container--subproduct__clothing">
+        <div className="subproduct-box-clothing__box">
           {subCategories.map((res) => (
-            <div key={res?.id} className="subproduct-box">
+            <div key={res?.id} className="subproduct-box__clothing">
               <Link to={`/subproduct/clothing/${res?.code}`}>
                 <img
-                  className="subproduct-box__image"
+                  className="subproduct-box--clothing__image"
                   src={res?.imgUrl}
                   alt="saree"
                 />

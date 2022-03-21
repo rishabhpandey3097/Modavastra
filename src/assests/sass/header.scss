@@ -22,7 +22,7 @@ header {
 
         .hamburger-menu {
           color: $color-white;
-        
+
           :hover {
             cursor: pointer;
           }
@@ -38,7 +38,8 @@ header {
         margin-right: 40px;
 
         .moda-logo {
-          width: 110px;
+          // width: 110px;
+          width: 80px;
           height: auto;
         }
       }
@@ -82,7 +83,7 @@ header {
           background: $color-neutral-gray;
           font-size: 14px;
           line-height: 22px;
-              padding: 8px 12px 8px 40px;
+          padding: 8px 12px 8px 40px;
           width: 300px;
           outline: none;
           color: $color-black;
@@ -150,7 +151,9 @@ header {
   }
 
   @include breakpoint-phone {
-    padding: 20px 15px !important;
+    padding: 15px 15px !important;
+    display: flex;
+    align-items: center;
 
     nav {
       .nav-items {
@@ -164,11 +167,24 @@ header {
       .nav-items-right {
         .nav-items {
           margin-right: 16px;
+
+          .moda-logo {
+            width: 81px !important;
+            height: auto;
+          }
         }
       }
 
       .moda-logo {
         margin-left: 4px;
+        width: 81px;
+      }
+
+      .nav-items__moda-logo {
+        .moda-logo {
+          width: 81px;
+          height: auto;
+        }
       }
     }
   }
@@ -202,7 +218,7 @@ header {
         width: 12px;
       }
     }
-  
+
     .search-tablet__input {
       width: 100%;
       padding: 0 20px;
@@ -225,7 +241,7 @@ header {
   display: none;
 
   .sidebar-menu__navigation {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 85px;
     z-index: 2;

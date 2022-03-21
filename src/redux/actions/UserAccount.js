@@ -82,8 +82,8 @@ export const userLogin = (data, history, isGuest) => {
           store.set("refresh_token", response.data.refresh_token);
           Cookies.set("valid", true, { expires: 0.5 });
           Cookies.set("isGuest", isGuest);
-          history.push("/");
           dispatch(getProductCategoryData(history));
+          history.push("/");
         } else {
           dispatch(loginError(response.data.message));
         }

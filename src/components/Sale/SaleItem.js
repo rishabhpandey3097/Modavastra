@@ -1,141 +1,135 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { useSelector, useDispatch, useStore } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useStore } from "react-redux";
+import { useHistory, useLocation, useParams } from "react-router";
 import Logo from "../../assests/images/logo.png";
-import { Link, useParams, useHistory, useLocation } from "react-router-dom";
-import Header from "../Header/Header";
-import { Slider, Switch, Image, message } from "antd";
+import { message, Image } from "antd";
 import ProductImageSlider from "../ProductImageSlider";
+import { Link } from "react-router-dom";
+import Header from "../Header/Header";
 import $ from "jquery";
 
 import star_normal from "../../assests/images/star.svg";
 import star_colored from "../../assests/images/star-colored.svg";
 import {
-  getProductSizesData,
+  clearProductDetails,
+  getAvailablePincodes,
   getProductDetailsData,
   getProductReviewsData,
-  getProductCustomizationData,
-  getCustomView,
-  clearProductDetails,
   getProductSuggestionsData,
 } from "../../redux/actions/ProductDetailsAction";
 import { addItemToShoppingBag } from "../../redux/actions/ProductBagAction";
+import { getSingleSaleItem } from "../../redux/actions/SalesAction";
 
-export const ViewDYOOParticularItems = () => {
+export const ViewSaleItem = () => {
   let { slug, itemName } = useParams();
+  console.log(slug, itemName);
 
-  return <ParticularItems slug={slug} name={itemName} />;
+  return <SaleItem slug={slug} name={itemName} />;
 };
 
 const reviewStepCount = 3;
 
-const ParticularItems = ({ slug, name }) => {
+const SaleItem = ({ slug, name }) => {
   const store = useStore();
   const history = useHistory();
-  const dispatch = useDispatch();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   // State Variables
   const [buyingSize, setBuyingSize] = useState("");
-  const [bust, setBust] = useState(null);
-  const [viewId, setViewId] = useState(null);
-  const [waist, setWaist] = useState(null);
-  const [hips, setHips] = useState(null);
   const [visible, setVisible] = useState(false);
-  const [item, setItem] = useState([]);
+  const [item, setItem] = useState({});
+  const [saleItem, setSaleItem] = useState({});
   const [price, setPrice] = useState(1999);
-  const [initialPrice, setInitialPrice] = useState(null);
-  const [updatedPrice, setUpdatedPrice] = useState(null);
+  const [sizes, setSizes] = useState([]);
   const [similarProducts, setSimilarProducts] = useState([]);
   const [itemReview, setItemReview] = useState();
   const [itemReviewCount, getItemReviewCount] = useState(reviewStepCount);
   const [itemReviewMore, getItemReviewMore] = useState(true);
-  const [productSizes, setProductSizes] = useState([]);
-  const [viewName, setViewName] = useState([]);
-  const [customView, setCustomView] = useState([]);
-  const [customViewItem, setCustomViewItem] = useState([]);
   const [pincode, setPincode] = useState("");
   const [availablePincodes, setAvailablePincodes] = useState([]);
-  const [isAvailable, setIsAvailable] = useState();
+  const [isAvailable, setIsAvailable] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-
-  // Custom Size states
-  const [selectedSize, setSelectedSize] = useState([""]);
-  const [color, setColor] = useState("");
-  const [isSizeSelected, setSizeSelected] = useState(false);
 
   useEffect(() => {
     dispatch(getProductDetailsData(slug, history));
-    dispatch(getProductCustomizationData(slug, history));
     dispatch(getProductReviewsData(slug, history));
-    dispatch(getProductSizesData(slug, history));
-    dispatch(getCustomView(slug));
-    window.scroll(0, 0);
-  }, [slug, location, history]);
+    dispatch(getSingleSaleItem(slug));
+    // dispatch(getAvailablePincodes(slug));
+  }, [dispatch, slug, history, location]);
 
   useEffect(() => {
     store.subscribe(() => {
       const newItem = store.getState();
-      // console.log(newItem);
+      console.log(newItem.salesReducer.singleSaleProduct);
       setPrice(newItem.productDetails.productDetails.price);
-      setUpdatedPrice(newItem.productDetails.productDetails.price);
-      setInitialPrice(newItem.productDetails.productDetails.price);
+      setSaleItem(newItem.salesReducer.singleSaleProduct);
       setItem(newItem.productDetails.productDetails);
+      setSizes(newItem.productDetails.productDetails.sizes);
       setItemReview(newItem.productDetails.productReviews);
-      setProductSizes(newItem.productDetails.productSizes);
+      // setAvailablePincodes(newItem.productDetails.pincodes);
     });
 
     return () => {
       dispatch(clearProductDetails);
+      setSizes([]);
       setItemReview([]);
-      setProductSizes([]);
+      // setAvailablePincodes([]);
     };
   }, [store, location, slug]);
 
-  const view_name = useSelector(
-    (state) => state.productDetails.productCustomization
-  );
-  const custom_view = useSelector(
-    (state) => state.productDetails.productCustomView
-  );
-
-  const createCustomView = (viewName, customView) => {
-    setViewName(view_name);
-    setCustomView(custom_view);
-    const distinctViewName = viewName.map((view) => {
-      return view.viewName;
-    });
-    const newArray = distinctViewName.map((el, index) => {
-      const arr = customView.filter((view) => {
-        return view.viewName === el;
-      });
-      return arr;
-    });
-    setCustomViewItem(newArray);
-  };
-
-  useEffect(() => {
-    createCustomView(view_name, custom_view);
-
-    return () => {
-      createCustomView([], []);
-    };
-  }, [view_name, custom_view]);
-
   useEffect(() => {
     dispatch(getProductSuggestionsData(price - 500, price + 500));
-  }, [price, dispatch, store]);
+    dispatch(getAvailablePincodes(slug));
+  }, [price, dispatch, store, slug]);
 
   useEffect(() => {
     store.subscribe(() => {
       setSimilarProducts(store.getState().productDetails.productSuggestions);
+      setAvailablePincodes(store.getState().productDetails.pincodes);
     });
 
     return () => {
       setSimilarProducts([]);
+      setAvailablePincodes([]);
     };
   }, [store, location, slug]);
 
-  // Review Logic
+  const addToBagHandler = () => {
+    let token = JSON.parse(localStorage.getItem("token"));
+    // if (availablePincodes.length === 0) {
+    //   message.error("This Product is not available in your area!");
+    //   return;
+    // }
+    if (buyingSize.trim() === "") {
+      message.error("Please select a size before adding to bag!");
+      return;
+    }
+    if (!token) {
+      message.error("Please Login!");
+      return;
+    }
+    // if (!isAvailable && pincode.trim() === "") {
+    //   message.error("Please Enter Pincode");
+    //   return;
+    // }
+    if (!isAvailable && pincode.trim() !== "") {
+      message.error(
+        `This Product is not available at this pincode: ${pincode}`
+      );
+    }
+    if (token && buyingSize !== "") {
+      const data = {
+        itemId: slug,
+        size: buyingSize,
+        color: "",
+        quantity: 1,
+      };
+      dispatch(addItemToShoppingBag(data));
+    }
+  };
+
+  // Reviews Logic
   const topReviews = itemReview
     ? itemReview?.reviews?.filter((review, index) => index < itemReviewCount)
     : [];
@@ -153,18 +147,6 @@ const ParticularItems = ({ slug, name }) => {
     getItemReviewCount(reviewStepCount);
     getItemReviewMore(true);
   };
-
-  //////// Random Key Generator ///////////////
-  function makeid(length) {
-    var result = "";
-    var characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return result;
-  }
 
   $(function () {
     $(".particular-items__size-chart")
@@ -237,14 +219,11 @@ const ParticularItems = ({ slug, name }) => {
         function customSlider() {
           const maxVal = slider.attr("max");
           const val = (slider.value / maxVal) * 100 + "%";
-
           tooltip.text(slider.value);
           progress.css("width", val);
           thumb.css("left", val);
         }
-
         customSlider();
-
         slider.off().on("input", function () {
           customSlider();
         });
@@ -266,79 +245,6 @@ const ParticularItems = ({ slug, name }) => {
     setIsClicked(true);
   };
 
-  ////////////// ADD TO SHOPPING BAG ///////////////
-  const addToBagHandler = () => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    if (!token) {
-      message.error("Please Login!");
-      return;
-    }
-    if (color.length === 0) {
-      message.error("Please select your custom design");
-      return;
-    }
-    if (updatedPrice === null) {
-      message.error("Please select custom view!");
-      return;
-    }
-    if (isSizeSelected === false) {
-      message.error("Please select a size before adding item to bag!");
-      return;
-    }
-    if (isSizeSelected && color.length !== 0 && selectedSize) {
-      const data = {
-        itemId: slug,
-        size: selectedSize,
-        color: color,
-        quantity: 1,
-      };
-      console.log(data);
-      dispatch(addItemToShoppingBag(data));
-    }
-  };
-
-  const onSettingCustomSize = (itemSize, type, value) => {
-    if (type === "Bust") {
-      setBust(value);
-    } else if (type === "Waist") {
-      setWaist(value);
-    } else if (type === "Hips") {
-      setHips(value);
-    }
-    const size = `${itemSize}-Bust${bust}, Waist${waist}, Hips${hips}`;
-    setSelectedSize(size);
-  };
-
-  //////////// Handle Customization //////////////////
-  const onSelectingCustomSize = (id) => {
-    const [selectedCustomSize] = productSizes.filter((el) => {
-      return el.id === id;
-    });
-    selectedCustomSize.sizeGroup.forEach((el, index) => {
-      if (el.part === "Bust") {
-        setBust(el.size);
-      }
-      if (el.part === "Waist") {
-        setWaist(el.size);
-      }
-      if (el.part === "Hips") {
-        setHips(el.size);
-      }
-    });
-    setSizeSelected(true);
-  };
-
-  const onSelectCustomiseYourDesign = (id) => {
-    setColor((prev) => {
-      return prev, id;
-    });
-    // console.log(color);
-  };
-
-  const onSelectCustomView = (id) => {
-    setViewId(id);
-  };
-
   return (
     <>
       <Header pageName={"Saree"} headerType={"header--main"} />
@@ -355,8 +261,8 @@ const ParticularItems = ({ slug, name }) => {
                     }}
                   >
                     {item && item.imageUrls ? (
-                      item.imageUrls.map((p_img) => (
-                        <Image key={makeid(5)} src={p_img} />
+                      item.imageUrls.map((p_img, index) => (
+                        <Image key={index} src={p_img} />
                       ))
                     ) : (
                       <Image src={Logo} />
@@ -379,6 +285,9 @@ const ParticularItems = ({ slug, name }) => {
                 ADD TO BAG
               </button>
             </div>
+            {/* <button className="btn-primary particular-items__buy-now">
+              ADD TO WISHLIST
+            </button> */}
           </div>
 
           <div className="particular-items__description">
@@ -386,130 +295,26 @@ const ParticularItems = ({ slug, name }) => {
             <p className="particular-items__designer">
               SOLD BY-<span>{item?.designerName}</span>
             </p>
-            <p className="particular-items__price">
-              ₹ {updatedPrice} <span>onwards</span>
+            <p className="particular-items__discounted_price">
+              ₹ {saleItem?.salePrice}
             </p>
-
-            <div className="particular-items__customise">
-              <p className="particular-items__title">Customise Your Design</p>
-              <div className="particular-items__action">
-                {viewName?.map((name, index) => {
-                  return (
-                    <div
-                      key={makeid(9)}
-                      className="particular-items__design-item"
-                    >
-                      {name?.viewName}
-                    </div>
-                  );
-                })}
-                <div className="particular-items__custom-design">
-                  {customViewItem.map((view, index) => {
-                    return (
-                      <div
-                        key={makeid(8)}
-                        className="particular-items__product-list"
-                      >
-                        {view.map((item, index) => {
-                          let itemView = item.customViews[0];
-                          let id = itemView.id + index;
-                          return (
-                            <div
-                              // key={makeid(7)}
-                              key={id}
-                              className={`particular-items__products ${
-                                viewId === id ? "itemSelected" : ""
-                              }`}
-                              onClick={() => {
-                                setUpdatedPrice(
-                                  initialPrice + itemView?.viewCharge
-                                );
-                                onSelectCustomiseYourDesign(itemView?.id);
-                                onSelectCustomView(id);
-                              }}
-                            >
-                              <Image
-                                src={itemView?.viewFile}
-                                alt={itemView?.viewDescription}
-                              />
-
-                              <span className="particular-items__products-name">
-                                {itemView?.viewDescription}
-                              </span>
-                              <span className="particular-items__products-price">
-                                ₹ {itemView?.viewCharge}
-                              </span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
+            <span className="discount">{saleItem?.sale}% off</span>
+            <p className="particular-items__actual_price">
+              ₹ <del>{saleItem?.price?.toFixed(2)}</del>
+            </p>
             <div className="particular-items__size">
               <p className="particular-items__title">Select Size</p>
               <div className="particular-items__action">
-                {productSizes?.map((size, index) => (
+                {sizes?.map((size, index) => (
                   <div
-                    key={makeid(3)}
+                    key={index}
+                    onClick={(e) => setBuyingSize(e.target.textContent)}
                     to="#"
                     className="particular-items__size-item"
-                    onClick={() => onSelectingCustomSize(size?.id)}
                   >
-                    {size.size}
+                    {size}
                   </div>
                 ))}
-
-                <div className="particular-items__custom-size">
-                  {productSizes?.map((size, index) => {
-                    return (
-                      <div
-                        key={makeid(9)}
-                        className="particular-items__size-list"
-                      >
-                        {size?.sizeGroup.map((element, index) => {
-                          return (
-                            <div
-                              key={makeid(7)}
-                              className="particular-items__size-data"
-                            >
-                              <div className="particular-items__size-name">
-                                {element?.part}
-                              </div>
-                              <div className="particular-items__size-slider">
-                                <Slider
-                                  min={25}
-                                  max={42}
-                                  defaultValue={element?.size}
-                                  onAfterChange={(value) => {
-                                    onSettingCustomSize(
-                                      size.size,
-                                      element?.part,
-                                      value
-                                    );
-                                  }}
-                                />
-                              </div>
-                              {/* <div className="particular-items__size-range">
-                                <span>0</span>
-                                <span>100</span>
-                              </div> */}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })}
-
-                  {/* <div className="particular-items__suggest-text">
-                    <p>Don't know your perfect size? Leave it on us!</p>
-                    <p>Get a specialist at home to take your measurements.</p>
-                    <Link to="#">Know More</Link>
-                  </div> */}
-                </div>
               </div>
 
               <div className="particular-items__size-button">
@@ -519,10 +324,12 @@ const ParticularItems = ({ slug, name }) => {
               </div>
               <div className="particular-items__size-table">
                 <table>
-                  <tbody>
+                  <thead>
                     <tr className="particular-items__table-header">
                       <th colSpan="11">Size Chart</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     <tr className="particular-items__table-row">
                       <td>(inches)</td>
                       <td>XS</td>
@@ -577,34 +384,33 @@ const ParticularItems = ({ slug, name }) => {
                     </tr>
                   </tbody>
                 </table>
-                {/* <p>
-                  or <Link to="/">Customise your size</Link>
-                </p> */}
               </div>
             </div>
-            <button className="btn-secondary particular-items__add-bag_mobile">
+            <button
+              onClick={addToBagHandler}
+              className="btn-secondary particular-items__add-bag_mobile"
+            >
               ADD TO BAG
             </button>
-
             <div className="particular-items__specifications">
               <h4 className="particular-items__specs-title">Specifications</h4>
               <p className="particular-items__specs-desc">
                 {item?.specifications}
               </p>
             </div>
-
             <div className="particular-items__sub-desc">
               <h4 className="particular-items__sub-desc-title">Description</h4>
               <p className="particular-items__sub-desc-desc">
                 {item?.description}
               </p>
             </div>
-
             {/* <div className="particular-items__pincode">
               <input
                 className="particular-items__pincode-input"
                 type="number"
                 placeholder="Enter Pincode"
+                value={pincode}
+                onChange={(e) => setPincode(e.target.value)}
               />
               <button
                 onClick={pincodeHandler}
@@ -641,17 +447,14 @@ const ParticularItems = ({ slug, name }) => {
                 alt=""
               />
               <p className="particular-items__rating-count">
-                {itemReview && itemReview.rating ? itemReview?.rating : 0}
+                {itemReview && itemReview.rating ? itemReview.rating : 0}
                 /10
               </p>
             </div>
           </div>
 
-          {topReviews?.map((review) => (
-            <div
-              key={makeid(5)}
-              className="particular-items__individual-rating"
-            >
+          {topReviews?.map((review, index) => (
+            <div key={index} className="particular-items__individual-rating">
               <div className="particular-items__individual-rating-count">
                 <img
                   src={review?.rating > 0 ? star_colored : star_normal}
@@ -707,36 +510,39 @@ const ParticularItems = ({ slug, name }) => {
             You may also like
           </h5>
           <div className="particular-items__all-suggested-items">
-            {similarProducts?.map((product) => (
-              <div
-                key={makeid(6)}
-                className="particular-items__suggested-items"
-              >
-                <div className="particular-items__items-details">
-                  <Link
-                    to={`/${
-                      product.proCode === "CLOTH"
-                        ? "clothing"
-                        : product.proCode === "DYOO"
-                        ? "DYOO"
-                        : product.proCode === "JEW"
-                        ? "jewellery"
-                        : null
-                    }/items/${product?.id}/${product?.name}`}
-                  >
-                    <img
-                      className="particular-items__items-image"
-                      src={product?.imgUrl}
-                      alt={product?.name}
-                    />
-                  </Link>
+            {similarProducts?.map((product) => {
+              //   console.log(product);
+              return (
+                <div
+                  key={product.id}
+                  className="particular-items__suggested-items"
+                >
+                  <div className="particular-items__items-details">
+                    <Link
+                      to={`/${
+                        product.proCode === "CLOTH"
+                          ? "clothing"
+                          : product.proCode === "DYOO"
+                          ? "DYOO"
+                          : product.proCode === "JEW"
+                          ? "jewellery"
+                          : null
+                      }/items/${product?.id}/${product.name}`}
+                    >
+                      <img
+                        className="particular-items__items-image"
+                        src={product?.imgUrl}
+                        alt={product?.name}
+                      />
+                    </Link>
 
-                  <p className="particular-items__items-name">
-                    {product?.name}
-                  </p>
+                    <p className="particular-items__items-name">
+                      {product?.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

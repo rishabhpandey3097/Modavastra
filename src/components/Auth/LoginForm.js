@@ -23,13 +23,25 @@ const LoginForm = () => {
   const handleSubmitLogin = (loginData) => {
     const { email, password } = loginData;
     dispatch(
-      userLogin({ username: email, password, grant_type: "password" }, history, false)
+      userLogin(
+        { username: email, password: password, grant_type: "password" },
+        history,
+        false
+      )
     );
   };
 
   const handleSkipForNow = () => {
     dispatch(
-      userLogin({ username: 'gust@gust.com', password: 'password', grant_type: 'password' }, history, true)
+      userLogin(
+        {
+          username: "gust@gust.com",
+          password: "password",
+          grant_type: "password",
+        },
+        history,
+        true
+      )
     );
   };
 
@@ -37,7 +49,9 @@ const LoginForm = () => {
     <React.Fragment>
       <div className="container-login">
         <div className="left-container">
-          <Link to="/"><img src={logo} alt="Moda Logo" /></Link>
+          <Link to="/">
+            <img src={logo} alt="Moda Logo" />
+          </Link>
         </div>
         <div className="right-container">
           <form onSubmit={handleSubmit(handleSubmitLogin)} autoComplete="off">
@@ -79,7 +93,9 @@ const LoginForm = () => {
                 Create an account
               </button>
             </Link>
-            <Button type="link" onClick={handleSkipForNow}>Skip for now</Button>
+            <Button type="link" onClick={handleSkipForNow}>
+              Skip for now
+            </Button>
           </div>
         </div>
       </div>
