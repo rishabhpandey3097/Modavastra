@@ -224,9 +224,9 @@
         margin-bottom: 24px;
         .particular-items__action {
           margin-bottom: 20px;
-          display: flex;
-          justify-content: space-around;
-          width: 60%;
+          // display: flex;
+          // justify-content: space-around;
+          // width: 60%;
           // .particular-items__size-selected {
           //   color: $color-purple;
           //   font-weight: 700;
@@ -240,7 +240,7 @@
           .particular-items__size-item {
             position: relative;
             display: inline-block;
-            // margin-right: 40px;
+            margin-right: 40px;
             cursor: pointer;
             &.active::after {
               content: "";
@@ -467,8 +467,8 @@
             width: 100%;
             margin-right: 2px !important;
             margin-bottom: 15px;
-            display: flex;
-            justify-content: space-around;
+            // display: flex;
+            // justify-content: space-around;
           }
         }
         .particular-items__customise {
