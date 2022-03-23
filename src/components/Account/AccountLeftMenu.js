@@ -26,7 +26,9 @@ const AccountLeftMenu = (props) => {
       { signal }
     );
 
-    return () => controller.abort();
+    return () => {
+      setActive([]);
+    };
   }, [store.getState()]);
 
   return (

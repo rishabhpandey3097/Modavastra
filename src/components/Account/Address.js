@@ -1,68 +1,65 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
-import { useDispatch, useStore } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
-import API from '../../axios'
-import Header from '../Header/Header'
-import { useForm } from 'react-hook-form'
-import { getAddressDetails, createAddress } from '../../redux/actions/UserAccount'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { createAddressSchema } from '../../utils/Validations'
-import AccountLeftMenu from './AccountLeftMenu'
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useDispatch, useStore } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import API from "../../axios";
+import Header from "../Header/Header";
+import { useForm } from "react-hook-form";
+import {
+  getAddressDetails,
+  createAddress,
+} from "../../redux/actions/UserAccount";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAddressSchema } from "../../utils/Validations";
+import AccountLeftMenu from "./AccountLeftMenu";
 
 const Address = (props) => {
-  const dispatch = useDispatch()
-  const store = useStore()
-  const [addresses, setAddresses] = useState([])
+  const dispatch = useDispatch();
+  const store = useStore();
+  const [addresses, setAddresses] = useState([]);
   const [heading, setHeading] = useState({
-    formHeading: 'Enter New Address',
-    buttonHeading: 'Add Address',
-  })
-  const formOptions = { resolver: yupResolver(createAddressSchema) }
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState,
-    setValue,
-    getValues,
-  } = useForm(formOptions)
-  const { errors } = formState
-  const history = useHistory()
+    formHeading: "Enter New Address",
+    buttonHeading: "Add Address",
+  });
+  const formOptions = { resolver: yupResolver(createAddressSchema) };
+  const { register, handleSubmit, reset, formState, setValue, getValues } =
+    useForm(formOptions);
+  const { errors } = formState;
+  const history = useHistory();
   useEffect(() => {
-    dispatch(getAddressDetails(history))
-  }, [])
+    dispatch(getAddressDetails(history));
+  }, []);
 
   useEffect(() => {
     store.subscribe(() => {
-      const newState = store.getState().auth.addresses
-      setAddresses(newState)
-    })
-  }, [store.getState().auth.addresses])
+      const newState = store.getState().auth.addresses;
+      setAddresses(newState);
+    });
+  }, [store.getState().auth.addresses]);
 
   const handleSubmitAddress = (data) => {
-    data['type'] = 'HOME'
-    dispatch(createAddress(data, reset, history))
+    data["type"] = "HOME";
+    dispatch(createAddress(data, reset, history));
     setHeading({
-      formHeading: 'Enter New Address',
-      buttonHeading: 'Add Address',
-    })
-  }
+      formHeading: "Enter New Address",
+      buttonHeading: "Add Address",
+    });
+  };
 
   const editAddress = (data) => {
-    setHeading({ formHeading: 'Edit Address', buttonHeading: 'Edit Address' })
-    setValue('address', data.address)
-    setValue('pincode', data.pincode)
-    setValue('state', data.state)
-    setValue('city', data.city)
-    setValue('locality', data.locality)
-    setValue('addressId', data.id)
-    window.scrollTo(0, document.body.scrollHeight)
-  }
+    setHeading({ formHeading: "Edit Address", buttonHeading: "Edit Address" });
+    setValue("address", data.address);
+    setValue("pincode", data.pincode);
+    setValue("state", data.state);
+    setValue("city", data.city);
+    setValue("locality", data.locality);
+    setValue("addressId", data.id);
+    window.scrollTo(0, document.body.scrollHeight);
+  };
 
   return (
     <>
-      <Header pageName={'Address'} headerType={'header--dark'} />
+      <Header pageName={"Address"} headerType={"header--dark"} />
       <div className="container__generic">
         <AccountLeftMenu />
         <div className="right-container">
@@ -72,7 +69,7 @@ const Address = (props) => {
                 <h3 className="address-details-text">Current Addresses</h3>
               )}
               {addresses.map((item, index) => (
-                <div className='current-address__textarea' key={index}>
+                <div className="current-address__textarea" key={index}>
                   <textarea
                     id="txtCurrAdd"
                     rows="7"
@@ -101,9 +98,9 @@ const Address = (props) => {
                       placeholder="Address (House No, Building, Street, Area)*"
                       id="address"
                       name="address"
-                      {...register('address')}
+                      {...register("address")}
                     />
-                    <i>{errors.address ? errors.address.message : ''}</i>
+                    <i>{errors.address ? errors.address.message : ""}</i>
                   </div>
                   <div className="address-field__box">
                     <input
@@ -111,9 +108,9 @@ const Address = (props) => {
                       placeholder="Locality/Town*"
                       name="locality"
                       id="locality"
-                      {...register('locality')}
+                      {...register("locality")}
                     />
-                    <i>{errors.locality ? errors.locality.message : ''}</i>
+                    <i>{errors.locality ? errors.locality.message : ""}</i>
                   </div>
                 </div>
                 <div className="city-state">
@@ -123,9 +120,9 @@ const Address = (props) => {
                       placeholder="City*"
                       name="city"
                       id="city"
-                      {...register('city')}
+                      {...register("city")}
                     />
-                    <i>{errors.city ? errors.city.message : ''}</i>
+                    <i>{errors.city ? errors.city.message : ""}</i>
                   </div>
 
                   <div className="address-field__box">
@@ -134,9 +131,9 @@ const Address = (props) => {
                       placeholder="State*"
                       name="state"
                       id="state"
-                      {...register('state')}
+                      {...register("state")}
                     />
-                    <i>{errors.state ? errors.state.message : ''}</i>
+                    <i>{errors.state ? errors.state.message : ""}</i>
                   </div>
                 </div>
 
@@ -144,11 +141,12 @@ const Address = (props) => {
                   <input
                     type="text"
                     placeholder="Pin Code*"
+                    className="pincode"
                     name="pincode"
                     id="pincode"
-                    {...register('pincode')}
+                    {...register("pincode")}
                   />
-                  <i>{errors.pincode ? errors.pincode.message : ''}</i>
+                  <i>{errors.pincode ? errors.pincode.message : ""}</i>
                 </div>
 
                 <button className="btn-primary" type="submit">
@@ -160,7 +158,7 @@ const Address = (props) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Address
+export default Address;

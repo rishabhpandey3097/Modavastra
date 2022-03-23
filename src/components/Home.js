@@ -218,14 +218,21 @@ const Home = (props) => {
                 <div className="product-join-community__text">
                   Growing Creators!
                 </div>
-                <button>Become a Creator</button>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdy1DdJJLf3B765qu5prUoDbPsMKzZ5zZWsOLf6WBGEOe41wA/viewform"
+                  target={"_blank"}
+                >
+                  <button>Become a Creator</button>
+                </a>
               </div>
               <div className="product-join-community__line"></div>
               <div className="product-join-community__sellers">
                 <div className="product-join-community__text">
                   Growing Sellers!
                 </div>
-                <button>Become a Seller</button>
+                <a href="https://forms.gle/tZCCDiA8TRV6wgyX8" target="_blank">
+                  <button>Become a Seller</button>
+                </a>
               </div>
             </div>
           </div>

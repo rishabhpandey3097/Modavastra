@@ -21,6 +21,10 @@
     width: 100%;
     object-fit: fill;
     object-position: center;
+
+    @include breakpoint-phone {
+      height: auto;
+    }
   }
 
   .subproduct-box__link {
@@ -124,13 +128,13 @@
 
 // Product Items CSS
 .container--product-items {
-  margin-top: 120px;
+  margin-top: 85px;
   padding: 0 40px 85px 42px;
   position: relative;
   display: flex;
 
   .search-items {
-    margin-left: 27%;
+    margin-left: 24%;
     margin-top: 90px;
   }
 
@@ -321,6 +325,7 @@
 @include media(phone) {
   .product-items__image {
     width: 160px !important;
+    height: 220px !important;
   }
 }
 @include media(tablet) {
@@ -337,9 +342,9 @@
 
 @include media(tablet, phone) {
   .filter {
-    margin-top: 120px;
+    margin-top: 100px;
     margin-bottom: 10px;
-    margin-left: 230px;
+    margin-left: 250px;
   }
 }
 

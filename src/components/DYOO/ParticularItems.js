@@ -335,8 +335,14 @@ const ParticularItems = ({ slug, name }) => {
     // console.log(color);
   };
 
-  const onSelectCustomView = (id) => {
-    setViewId(id);
+  const onSelectCustomView = (id, viewCharge) => {
+    if (id === viewId) {
+      setViewId(null);
+      setUpdatedPrice(initialPrice);
+    } else {
+      setViewId(id);
+      setUpdatedPrice(initialPrice + viewCharge);
+    }
   };
 
   return (
@@ -420,23 +426,28 @@ const ParticularItems = ({ slug, name }) => {
                               className={`particular-items__products ${
                                 viewId === id ? "itemSelected" : ""
                               }`}
-                              onClick={() => {
-                                setUpdatedPrice(
-                                  initialPrice + itemView?.viewCharge
-                                );
-                                onSelectCustomiseYourDesign(itemView?.id);
-                                onSelectCustomView(id);
-                              }}
                             >
                               <Image
                                 src={itemView?.viewFile}
                                 alt={itemView?.viewDescription}
                               />
 
-                              <span className="particular-items__products-name">
+                              <span
+                                onClick={() => {
+                                  onSelectCustomiseYourDesign(itemView?.id);
+                                  onSelectCustomView(id, itemView?.viewCharge);
+                                }}
+                                className="particular-items__products-name"
+                              >
                                 {itemView?.viewDescription}
                               </span>
-                              <span className="particular-items__products-price">
+                              <span
+                                onClick={() => {
+                                  onSelectCustomiseYourDesign(itemView?.id);
+                                  onSelectCustomView(id, itemView?.viewCharge);
+                                }}
+                                className="particular-items__products-price"
+                              >
                                 ₹ {itemView?.viewCharge}
                               </span>
                             </div>

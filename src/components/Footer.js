@@ -59,10 +59,17 @@ const Footer = (props) => {
       <ul className="footer-collaborations">
         <li className="footer-column-header"> Collaborations</li>
         <li>
-          <a href="#">Become a Seller</a>
+          <a href="https://forms.gle/tZCCDiA8TRV6wgyX8" target="_blank">
+            Become a Seller
+          </a>
         </li>
         <li>
-          <a href="#">Become our Creator</a>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSdy1DdJJLf3B765qu5prUoDbPsMKzZ5zZWsOLf6WBGEOe41wA/viewform"
+            target={"_blank"}
+          >
+            Become our Creator
+          </a>
         </li>
         <li>
           <a href="#">Know More</a>

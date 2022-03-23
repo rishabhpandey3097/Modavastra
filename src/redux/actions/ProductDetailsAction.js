@@ -59,7 +59,7 @@ export const getProductReviewsData = (id, history) => {
         } else {
           message = error.response.message;
         }
-        errorMessage(message);
+        // errorMessage(message);
         // dispatch(userLogout(history));
       });
   };
@@ -89,7 +89,7 @@ export const getProductSuggestionsData = (minPrice, maxPrice) => {
         } else {
           message = error.response.message;
         }
-        errorMessage(message);
+        // errorMessage(message);
       });
   };
 };

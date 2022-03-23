@@ -504,7 +504,6 @@ const ParticularItems = ({ slug, name }) => {
           </h5>
           <div className="particular-items__all-suggested-items">
             {similarProducts?.map((product) => {
-              console.log(product);
               return (
                 <div
                   key={product.id}

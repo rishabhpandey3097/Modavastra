@@ -166,7 +166,7 @@
               max-width: 384px;
               overflow: auto;
               @include media(tablet, phone) {
-                width: 280px;
+                width: auto;
               }
               &.active {
                 display: flex;
@@ -588,6 +588,17 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, 225px);
       justify-content: space-evenly;
+
+      @include breakpoint-phone {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+
+        .particular-items__items-image {
+          margin-right: 0px !important;
+          margin-top: 10px;
+        }
+      }
     }
     .particular-items__suggested-items {
       .particular-items__items-details {
@@ -595,18 +606,25 @@
         font-size: 18px;
         line-height: 27px;
         .particular-items__items-image {
-          width: 225px !important;
+          width: 230px;
           margin-bottom: 8px;
-          height: 240px;
+          height: 295px;
           margin-right: 27px;
           object-fit: fill;
           @include breakpoint-tablet {
             width: 180px;
-            height: 260;
+            height: 260px;
           }
           @include breakpoint-phone {
-            width: 120px;
-            // height: 195px;
+            width: 140px;
+            // height: auto;
+            height: 195px;
+          }
+        }
+        .particular-items__items-name {
+          @include breakpoint-phone {
+            font-size: 14px;
+            line-height: 18px;
           }
         }
       }

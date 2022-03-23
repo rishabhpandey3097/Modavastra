@@ -30,7 +30,9 @@ const MyAccount = (props) => {
       { signal }
     );
 
-    return () => controller.abort();
+    return () => {
+      setName([]);
+    };
   }, [store.getState()]);
 
   const handleChange = (e) => {
