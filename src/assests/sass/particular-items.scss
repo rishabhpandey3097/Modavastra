@@ -664,6 +664,9 @@
   .carousel {
     width: 15%;
     position: relative;
+    .slider-wrapper {
+      margin-top: 40px;
+    }
     .slide img {
       aspect-ratio: 2.5/3.5;
     }
